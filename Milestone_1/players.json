@@ -1,48 +1,152 @@
 [
-    {
-      "id": "PLR-001",
-      "name": "Lionel Messi",
-      "age": 34,
-      "position": "Forward",
-      "nationality": "Argentina",
-      "overallRating": 93,
-      "isActive": true,
-      "birthDate": "1987-06-24",
-      "club": {
-        "name": "Paris Saint-Germain",
-        "league": "Ligue 1"
-      },
-      "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/messi.jpg"
+  {
+    "id": "PLR-001",
+    "name": "Lionel Messi",
+    "age": 34,
+    "position": "Forward",
+    "nationality": "Argentina",
+    "overallRating": 93,
+    "isActive": true,
+    "birthDate": "1987-06-24",
+    "club": {
+      "name": "Paris Saint-Germain",
+      "league": "Ligue 1"
     },
-    {
-      "id": "PLR-002",
-      "name": "Cristiano Ronaldo",
-      "age": 36,
-      "position": "Forward",
-      "nationality": "Portugal",
-      "overallRating": 94,
-      "isActive": true,
-      "birthDate": "1985-02-05",
-      "club": {
-        "name": "Manchester United",
-        "league": "Premier League"
-      },
-      "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/ronaldo.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/messi.jpg"
+  },
+  {
+    "id": "PLR-002",
+    "name": "Cristiano Ronaldo",
+    "age": 36,
+    "position": "Forward",
+    "nationality": "Portugal",
+    "overallRating": 94,
+    "isActive": true,
+    "birthDate": "1985-02-05",
+    "club": {
+      "name": "Manchester United",
+      "league": "Premier League"
     },
-    {
-      "id": "PLR-003",
-      "name": "Neymar Jr",
-      "age": 30,
-      "position": "Forward",
-      "nationality": "Brazil",
-      "overallRating": 91,
-      "isActive": true,
-      "birthDate": "1992-02-05",
-      "club": {
-        "name": "Paris Saint-Germain",
-        "league": "Ligue 1"
-      },
-      "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/neymar.jpg"
-    }
-  ]
-  
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/ronaldo.jpg"
+  },
+  {
+    "id": "PLR-003",
+    "name": "Neymar Jr",
+    "age": 30,
+    "position": "Forward",
+    "nationality": "Brazil",
+    "overallRating": 91,
+    "isActive": true,
+    "birthDate": "1992-02-05",
+    "club": {
+      "name": "Paris Saint-Germain",
+      "league": "Ligue 1"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/neymar.jpg"
+  },
+  {
+    "id": "PLR-004",
+    "name": "Kevin De Bruyne",
+    "age": 30,
+    "position": "Midfielder",
+    "nationality": "Belgium",
+    "overallRating": 91,
+    "isActive": true,
+    "birthDate": "1991-06-28",
+    "club": {
+      "name": "Manchester City",
+      "league": "Premier League"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/kevin.jpg"
+  },
+  {
+    "id": "PLR-005",
+    "name": "Robert Lewandowski",
+    "age": 33,
+    "position": "Forward",
+    "nationality": "Poland",
+    "overallRating": 92,
+    "isActive": true,
+    "birthDate": "1988-08-21",
+    "club": {
+      "name": "Bayern Munich",
+      "league": "Bundesliga"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/lewandowski.jpg"
+  },
+  {
+    "id": "PLR-006",
+    "name": "Kylian Mbappe",
+    "age": 23,
+    "position": "Forward",
+    "nationality": "France",
+    "overallRating": 90,
+    "isActive": true,
+    "birthDate": "1998-12-20",
+    "club": {
+      "name": "Paris Saint-Germain",
+      "league": "Ligue 1"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/mbappe.webp"
+  },
+  {
+    "id": "PLR-007",
+    "name": "Virgil van Dijk",
+    "age": 30,
+    "position": "Defender",
+    "nationality": "Netherlands",
+    "overallRating": 90,
+    "isActive": true,
+    "birthDate": "1991-07-08",
+    "club": {
+      "name": "Liverpool",
+      "league": "Premier League"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/van dijk.jpeg"
+  },
+  {
+    "id": "PLR-008",
+    "name": "Sergio Ramos",
+    "age": 36,
+    "position": "Defender",
+    "nationality": "Spain",
+    "overallRating": 89,
+    "isActive": true,
+    "birthDate": "1986-03-30",
+    "club": {
+      "name": "Paris Saint-Germain",
+      "league": "Ligue 1"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/ramos.jpg"
+  },
+  {
+    "id": "PLR-009",
+    "name": "Mohamed Salah",
+    "age": 29,
+    "position": "Forward",
+    "nationality": "Egypt",
+    "overallRating": 90,
+    "isActive": true,
+    "birthDate": "1992-06-15",
+    "club": {
+      "name": "Liverpool",
+      "league": "Premier League"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/salah.webp"
+  },
+  {
+    "id": "PLR-010",
+    "name": "Gianluigi Donnarumma",
+    "age": 23,
+    "position": "Goalkeeper",
+    "nationality": "Italy",
+    "overallRating": 89,
+    "isActive": true,
+    "birthDate": "1999-02-25",
+    "club": {
+      "name": "Paris Saint-Germain",
+      "league": "Ligue 1"
+    },
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/donarumma.jpg"
+  }
+]
