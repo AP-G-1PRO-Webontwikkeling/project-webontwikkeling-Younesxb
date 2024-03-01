@@ -1,4 +1,4 @@
-// index.ts
+
 import { Player } from './Interface';
 import * as readlineSync from 'readline-sync';
 import * as fs from 'fs';

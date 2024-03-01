@@ -12,7 +12,7 @@
         "name": "Paris Saint-Germain",
         "league": "Ligue 1"
       },
-      "imageURL": "https://example.com/images/messi.jpg"
+      "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/messi.jpg"
     },
     {
       "id": "PLR-002",
@@ -27,7 +27,7 @@
         "name": "Manchester United",
         "league": "Premier League"
       },
-      "imageURL": "https://example.com/images/ronaldo.jpg"
+      "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/ronaldo.jpg"
     },
     {
       "id": "PLR-003",
@@ -42,7 +42,7 @@
         "name": "Paris Saint-Germain",
         "league": "Ligue 1"
       },
-      "imageURL": "https://example.com/images/neymar.jpg"
+      "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/neymar.jpg"
     }
   ]
   
