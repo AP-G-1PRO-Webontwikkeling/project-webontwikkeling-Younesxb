@@ -1,0 +1,48 @@
+[
+    {
+      "id": "PLR-001",
+      "name": "Lionel Messi",
+      "age": 34,
+      "position": "Forward",
+      "nationality": "Argentina",
+      "overallRating": 93,
+      "isActive": true,
+      "birthDate": "1987-06-24",
+      "club": {
+        "name": "Paris Saint-Germain",
+        "league": "Ligue 1"
+      },
+      "imageURL": "https://example.com/images/messi.jpg"
+    },
+    {
+      "id": "PLR-002",
+      "name": "Cristiano Ronaldo",
+      "age": 36,
+      "position": "Forward",
+      "nationality": "Portugal",
+      "overallRating": 94,
+      "isActive": true,
+      "birthDate": "1985-02-05",
+      "club": {
+        "name": "Manchester United",
+        "league": "Premier League"
+      },
+      "imageURL": "https://example.com/images/ronaldo.jpg"
+    },
+    {
+      "id": "PLR-003",
+      "name": "Neymar Jr",
+      "age": 30,
+      "position": "Forward",
+      "nationality": "Brazil",
+      "overallRating": 91,
+      "isActive": true,
+      "birthDate": "1992-02-05",
+      "club": {
+        "name": "Paris Saint-Germain",
+        "league": "Ligue 1"
+      },
+      "imageURL": "https://example.com/images/neymar.jpg"
+    }
+  ]
+  
