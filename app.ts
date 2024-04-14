@@ -26,14 +26,14 @@ function loadJSONData(filename: string): Player[] {
 
 
 app.get('/', (req, res) => {
-    const players = loadJSONData('players.json'); // Laden van spelersgegevens
+    const players = loadJSONData('players.json'); 
     res.render('playerList', { players });
 });
 
 app.get('/detail/:id', (req, res) => {
     const playerId = req.params.id;
-    const players = loadJSONData('players.json'); // Laden van spelersgegevens
-    const player = players.find(player => player.id === playerId); // Zoeken naar de speler met het opgegeven ID
+    const players = loadJSONData('players.json'); 
+    const player = players.find(player => player.id === playerId); 
     res.render('detail', { player });
 });
 
@@ -59,9 +59,7 @@ app.get('/overview', (req, res) => {
     res.render('overview', { players });
 });
 
-// Andere routes, middleware, etc...
 
-// Start de server
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
