@@ -39,7 +39,7 @@ app.get('/detail/:id', (req, res) => {
 
 app.get('/overview', (req, res) => {
     const sortAttribute: keyof Player = req.query.sortAttribute as keyof Player || 'name';
-    const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1; // Behandel als string
+    const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1; 
 
     const playersFilePath = path.join(__dirname, 'players.json');
     const players = loadJSONData(playersFilePath);
