@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Overview</title>
+    <link rel="stylesheet" href="/css/style.css"> 
+    <link rel="stylesheet" href="/css/reset.css"> 
+</head>
+<body>
+    <h1>Player Overview</h1>
+
+    <form action="/overview" method="get">
+        <label for="sortAttribute">Sort by:</label>
+        <select name="sortAttribute" id="sortAttribute">
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+            <option value="position">Position</option>
+        </select>
+        <label for="sortOrder">Order:</label>
+        <select name="sortOrder" id="sortOrder">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+
+    <form>
+        <input type="text" id="searchInput" onkeyup="filterPlayers()" placeholder="Search for players...">
+    </form>
+
+    <table id="playersTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Position</th>
+                <th>Nationality</th>
+                <th>Overall Rating</th>
+                <th>Active</th>
+                <th>Club</th>
+                <th>League</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% players.forEach(player => { %>
+                <tr>
+                    <td><a href="/detail/<%= player.id %>"><%= player.name %></a></td>
+                    <td><%= player.age %></td>
+                    <td><%= player.position %></td>
+                    <td><%= player.nationality %></td>
+                    <td><%= player.overallRating %></td>
+                    <td><%= player.isActive %></td>
+                    <td><%= player.club.name %></td>
+                    <td><%= player.club.league %></td>
+        
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script>
+        function filterPlayers() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("playersTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; 
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
+</body>
+</html>

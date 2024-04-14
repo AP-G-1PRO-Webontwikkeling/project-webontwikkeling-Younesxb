@@ -1,0 +1,30 @@
+<!-- views/detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Detail</title>
+    <link rel="stylesheet" href="/public/css/style.css"> 
+</head>
+<body>
+    <h1>Player Detail</h1>
+    <div>
+        <% if (player) { %>
+            <h2><%= player.name %></h2>
+            <p>ID: <%= player.id %></p>
+            <p>Age: <%= player.age %></p>
+            <p>Position: <%= player.position %></p>
+            <p>Nationality: <%= player.nationality %></p>
+            <p>Overall Rating: <%= player.overallRating %></p>
+            <p>Active: <%= player.isActive %></p>
+            <p>Birth Date: <%= player.birthDate %></p>
+            <p>Club: <%= player.club.name %> (League: <%= player.club.league %>)</p>
+            <img src="<%= player.imageURL %>" alt="<%= player.name %>">
+        <% } else { %>
+            <p>Player not found</p>
+        <% } %>
+    </div>
+</body>
+</html>
