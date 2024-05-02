@@ -1,15 +1,5 @@
+<%- include("header") %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player List</title>
-    <link rel="stylesheet" href="../css/reset.css" />
-    <link rel="stylesheet" href="../css/style.css" />
-
-</head>
-<body>
     <h1>Welcome to the YNS FIFA Player Data Viewer!</h1>
     <ul class="player-list">
         <% players.forEach(player => { %>
@@ -21,8 +11,4 @@
             </li>
         <% }); %>
     </ul>
-</body>
-<footer>
-    <p>&copy;Younes Benzian</p>
-</footer>
-</html>
+    <%- include("footer") %>

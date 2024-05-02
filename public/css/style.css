@@ -1,20 +1,45 @@
-/* Stijl voor de lijst met spelers */
+
+h1 {
+    font-size: 2rem;
+    font-weight: 999;
+    text-align: center;
+}
+
+
 .player-list {
     list-style: none;
     padding: 0;
     margin: 0;
+   
 }
 
-/* Stijl voor elk afzonderlijk item in de lijst */
 .player-item {
-    text-align: center; /* Centreer de inhoud van elk item */
+    display: flex;
+    justify-content: space-between; /* Om de afbeelding en naam uit elkaar te duwen */
+    align-items: center;
     margin-bottom: 20px; /* Ruimte tussen elk item */
+    border-bottom: 0.5rem solid black;
 }
 
-/* Stijl voor de afbeeldingen van spelers */
 .player-image { 
     width: 200px; /* Vaste breedte voor de afbeeldingen */
     height: auto; /* Behoud de aspectverhouding */
     display: block; /* Zorgt ervoor dat de afbeeldingen niet inline worden weergegeven */
-    margin: 0 auto; /* Centreert de afbeeldingen horizontaal in hun container */
+    margin-right: 20px; /* Ruimte tussen de afbeelding en de naam */
+}
+
+.player-name {
+    font-size: 2rem;
+    text-align: right; /* Plaats de naam aan de rechterkant */
+    flex-grow: 1; /* Laat de naam zoveel mogelijk ruimte innemen */
+}
+
+
+nav {
+    font-size: 5rem;
+}
+
+footer {
+    text-align: center;
+    font-weight: 999;
 }
