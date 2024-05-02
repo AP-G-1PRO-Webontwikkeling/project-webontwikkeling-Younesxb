@@ -12,7 +12,7 @@
       "name": "Paris Saint-Germain",
       "league": "Ligue 1"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/messi.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/messi.jpg"
   },
   {
     "id": "2",
@@ -27,7 +27,7 @@
       "name": "Manchester United",
       "league": "Premier League"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/ronaldo.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/ronaldo.jpg"
   },
   {
     "id": "3",
@@ -42,7 +42,7 @@
       "name": "Paris Saint-Germain",
       "league": "Ligue 1"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/neymar.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/neymar.jpg"
   },
   {
     "id": "4",
@@ -57,7 +57,7 @@
       "name": "Manchester City",
       "league": "Premier League"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/kevin.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/kevin.jpg"
   },
   {
     "id": "5",
@@ -72,7 +72,7 @@
       "name": "Bayern Munich",
       "league": "Bundesliga"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/lewandowski.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/lewandowski.jpg"
   },
   {
     "id": "6",
@@ -87,7 +87,7 @@
       "name": "Paris Saint-Germain",
       "league": "Ligue 1"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/mbappe.webp"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/mbappe.webp"
   },
   {
     "id": "7",
@@ -102,7 +102,7 @@
       "name": "Liverpool",
       "league": "Premier League"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/van dijk.jpeg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/van dijk.jpeg"
   },
   {
     "id": "8",
@@ -117,7 +117,7 @@
       "name": "Paris Saint-Germain",
       "league": "Ligue 1"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/ramos.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/ramos.jpg"
   },
   {
     "id": "9",
@@ -132,7 +132,7 @@
       "name": "Liverpool",
       "league": "Premier League"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/salah.webp"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/salah.webp"
   },
   {
     "id": "10",
@@ -147,6 +147,6 @@
       "name": "Paris Saint-Germain",
       "league": "Ligue 1"
     },
-    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/Milestone_1/images/donarumma.jpg"
+    "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/donarumma.jpg"
   }
 ]
