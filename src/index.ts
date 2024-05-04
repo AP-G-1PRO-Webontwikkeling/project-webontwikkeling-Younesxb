@@ -5,12 +5,13 @@ import { Player } from '../Interfaces/Interface';
 
 const app = express();
 
-
 app.set('view engine', 'ejs');
-
 
 app.use(express.static("public"));
 
+const playersFilePath = path.join(__dirname, '../players.json'); // Update het pad naar players.json
+
+const players = loadJSONData(playersFilePath);
 
 function loadJSONData(filename: string): Player[] {
     try {
@@ -22,15 +23,12 @@ function loadJSONData(filename: string): Player[] {
     }
 }
 
-
 app.get('/', (req, res) => {
-    const players = loadJSONData('players.json'); 
-    res.render('index', { players });
+    res.render('index', { players }); // Geef de geladen spelers door aan de index-weergave
 });
 
 app.get('/detail/:id', (req, res) => {
     const playerId = req.params.id;
-    const players = loadJSONData('players.json'); 
     const player = players.find(player => player.id === playerId); 
     res.render('detail', { player });
 });
@@ -39,10 +37,9 @@ app.get('/overview', (req, res) => {
     const sortAttribute: keyof Player = req.query.sortAttribute as keyof Player || 'name';
     const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1; 
 
-    const playersFilePath = path.join(__dirname, 'players.json');
-    const players = loadJSONData(playersFilePath);
+    const sortedPlayers = [...players]; // Maak een kopie van de spelersarray om te sorteren
 
-    players.sort((a, b) => {
+    sortedPlayers.sort((a, b) => {
         const attrA = sortAttribute === 'club' ? a.club.name : a[sortAttribute];
         const attrB = sortAttribute === 'club' ? b.club.name : b[sortAttribute];
 
@@ -54,9 +51,8 @@ app.get('/overview', (req, res) => {
         return 0;
     });
 
-    res.render('overview', { players });
+    res.render('overview', { players: sortedPlayers });
 });
-
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

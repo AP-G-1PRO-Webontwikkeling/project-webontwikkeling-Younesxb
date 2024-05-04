@@ -1,14 +1,22 @@
 <%- include("header") %>
 
-    <h1>Welcome to the YNS FIFA Player Data Viewer!</h1>
-    <ul class="player-list">
-        <% players.forEach(player => { %>
-            <li class="player-item">
-                <a href="/detail/<%= player.id %>">
-                    <img src="<%= player.imageURL %>" alt="<%= player.name %>" class="player-image">
+<h1>Welcome to the YNS FIFA Player Data Viewer!</h1>
+<ul class="player-list">
+    <% players.forEach(player => { %>
+        <li class="player-item">
+            <a href="/detail/<%= player.id %>">
+    
                     <span class="player-name"><%= player.name %></span>
-                </a>
-            </li>
-        <% }); %>
-    </ul>
-    <%- include("footer") %>
+              
+                <img src="<%= player.imageURL %>" alt="<%= player.name %>" class="player-image">
+             
+            </a>
+            <div class="player-details">
+               
+                <span class="player-birthdate">Birthdate: <%= player.birthDate %></span>
+                <span class="player-position">Position: <%= player.position %></span>
+            </div>
+        </li>
+    <% }); %>
+</ul>
+<%- include("footer") %>

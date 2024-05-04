@@ -1,10 +1,15 @@
 
+
+body {
+    background-color:lightsteelblue;
+}
+
 h1 {
     font-size: 2rem;
     font-weight: 999;
     text-align: center;
+  
 }
-
 
 .player-list {
     list-style: none;
@@ -15,7 +20,7 @@ h1 {
 
 .player-item {
     display: flex;
-    justify-content: space-between; /* Om de afbeelding en naam uit elkaar te duwen */
+    justify-content: space-between; /* Om de afbeelding en de informatie uit elkaar te duwen */
     align-items: center;
     margin-bottom: 20px; /* Ruimte tussen elk item */
     border-bottom: 0.5rem solid black;
@@ -28,18 +33,32 @@ h1 {
     margin-right: 20px; /* Ruimte tussen de afbeelding en de naam */
 }
 
-.player-name {
-    font-size: 2rem;
-    text-align: right; /* Plaats de naam aan de rechterkant */
-    flex-grow: 1; /* Laat de naam zoveel mogelijk ruimte innemen */
+
+
+
+
+.player-details {
+    display: flex; /* Weergeven van de geboortedatum en positie naast elkaar */
+}
+
+.player-details > span {
+    margin-right: 10px; /* Tussenruimte tussen de geboortedatum en positie */
 }
 
 
 nav {
-    font-size: 5rem;
+    font-size: 2rem;
 }
 
 footer {
     text-align: center;
     font-weight: 999;
+}   
+
+
+span {
+    display: flex;  
+    flex-grow: 1; 
+    font-weight: 999;
+
 }

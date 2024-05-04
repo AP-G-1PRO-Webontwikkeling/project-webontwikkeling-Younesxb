@@ -39,7 +39,7 @@
     "isActive": true,
     "birthDate": "1992-02-05",
     "club": {
-      "name": "Paris Saint-Germain",
+      "name": "Paris Saint-Germain",  
       "league": "Ligue 1"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/images/neymar.jpg"
