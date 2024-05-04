@@ -1,64 +1,117 @@
-
-
 body {
-    background-color:lightsteelblue;
+    display: grid;
+    grid-template-areas: "header header header","main main main", "footer ,footer ,footer";
+    background-color: lightsteelblue;
 }
 
 h1 {
     font-size: 2rem;
     font-weight: 999;
     text-align: center;
-  
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 999;
+    text-align: left;
+    padding: 1rem;
 }
 
 .player-list {
     list-style: none;
     padding: 0;
     margin: 0;
-   
 }
 
 .player-item {
     display: flex;
-    justify-content: space-between; /* Om de afbeelding en de informatie uit elkaar te duwen */
-    align-items: center;
-    margin-bottom: 20px; /* Ruimte tussen elk item */
     border-bottom: 0.5rem solid black;
+    padding-bottom: 1rem;
 }
 
-.player-image { 
-    width: 200px; /* Vaste breedte voor de afbeeldingen */
-    height: auto; /* Behoud de aspectverhouding */
-    display: block; /* Zorgt ervoor dat de afbeeldingen niet inline worden weergegeven */
-    margin-right: 20px; /* Ruimte tussen de afbeelding en de naam */
+.player-image {
+    width: 200px;
+    flex-shrink: 0; 
+}
+
+.player-info {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding-left: 1rem;
+}
+
+.player-info > div {
+    margin-bottom: 5px;
+    border-right: 1px solid black;
+    padding-right: 10px;
 }
 
 
-
-
+.label {
+    font-weight: bold;
+    color: blue;
+}
 
 .player-details {
-    display: flex; /* Weergeven van de geboortedatum en positie naast elkaar */
+    display: flex; /* Maak een flex container voor de kolommen */
+    border-right: 0.5rem solid black; /* Voeg een zwarte rechterrand toe */
+  
+}
+
+.player-link {
+    display: flex;
+    flex: 1;
+}
+
+.player-details > div {
+    padding: 0.5rem; /* Voeg wat ruimte toe rond elke kolom */
+}
+
+.player-details > div:not(:last-child) {
+    border-right: 0.5rem solid black; /* Voeg een rechterrand toe aan alle kolommen behalve de laatste */
 }
 
 .player-details > span {
-    margin-right: 10px; /* Tussenruimte tussen de geboortedatum en positie */
+    margin-right: 0;
 }
 
-
 nav {
+    display: flex;
+    flex-direction: row;
     font-size: 2rem;
+    border-bottom: 0.5rem solid black;
+}
+
+.navbar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar-item {
+    margin-right: 20px;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navbar-link:hover {
+    color: darkgray;
 }
 
 footer {
     text-align: center;
     font-weight: 999;
-}   
-
+}
 
 span {
-    display: flex;  
-    flex-grow: 1; 
+    display: flex;
+    flex-grow: 1;
     font-weight: 999;
-
 }
