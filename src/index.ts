@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 const mongoURI: string | undefined = process.env.MONGO_URI;
 const dbName = process.env.DB_NAME;
 
-const client = new MongoClient("mongodb+srv://Younes:APHogeschool@clusterofyounes.4temuqa.mongodb.net/ClusterOfYounes");
+const client = new MongoClient("mongodb+srv://Younes:APHogeschool@clusterofyounes.4temuqa.mongodb.net/?retryWrites=true&w=majority&appName=ClusterOfYounes");
 let db: Db;
 
 async function connectToMongoDB() {
@@ -26,22 +26,28 @@ async function connectToMongoDB() {
 }
 
 async function importPlayersDataToMongoDB() {
-    try {
-        const playersDataPath = path.join(__dirname, '../players.json');
-        const playersData = await fs.promises.readFile(playersDataPath, 'utf-8');
-        const parsedPlayersData = JSON.parse(playersData);
+  try {
+    const collection = db.collection('players');
+    const count = await collection.countDocuments();
 
-        const collection = db.collection('players');
-        const result = await collection.insertMany(parsedPlayersData);
-        console.log(`${result.insertedCount} documents were inserted into the players collection.`);
-    } catch (error) {
-        console.error(`Error importing players data to MongoDB: ${error}`);
+    if (count === 0) {
+      const playersDataPath = path.join(__dirname, '../players.json');
+      const playersData = await fs.promises.readFile(playersDataPath, 'utf-8');
+      const parsedPlayersData = JSON.parse(playersData);
+
+      const result = await collection.insertMany(parsedPlayersData);
+      console.log(`${result.insertedCount} files zijn toegevoegd in cluster.`);
+    } else {
+      console.log('Spelersgegevens zijn al geïmporteerd naar MongoDB.');
     }
+  } catch (error) {
+    console.error(`fout importeren MongoDB: ${error}`);
+  }
 }
 
 connectToMongoDB()
-    .then(() => importPlayersDataToMongoDB())
-    .catch(error => console.error('Failed to import players data:', error));
+  .then(() => importPlayersDataToMongoDB())
+  .catch(error => console.error('Failed to import players data:', error));
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));

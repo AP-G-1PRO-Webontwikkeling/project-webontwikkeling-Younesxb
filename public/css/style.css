@@ -63,8 +63,8 @@ h2 {
 }
 
 .player-details {
-    display: flex; /* Maak een flex container voor de kolommen */
-    border-right: 0.5rem solid black; /* Voeg een zwarte rechterrand toe */
+    display: flex; 
+    border-right: 0.5rem solid black; 
   
 }
 
@@ -74,11 +74,11 @@ h2 {
 }
 
 .player-details > div {
-    padding: 0.5rem; /* Voeg wat ruimte toe rond elke kolom */
+    padding: 0.5rem; /
 }
 
 .player-details > div:not(:last-child) {
-    border-right: 0.5rem solid black; /* Voeg een rechterrand toe aan alle kolommen behalve de laatste */
+    border-right: 0.5rem solid black; /
 }
 
 .player-details > span {
@@ -129,9 +129,7 @@ span {
 
 /*overview*/
 
-/* Voeg deze stijlen toe aan je bestaande CSS-bestand */
 
-/* Voeg deze stijlen toe aan je bestaande CSS-bestand */
 
 .controls {
     margin-bottom: 20px;
