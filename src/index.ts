@@ -4,15 +4,10 @@ import * as fs from 'fs';
 import { Player } from '../Interfaces/Interface';
 
 const app = express();
-
 app.set('view engine', 'ejs');
-
 app.use(express.static("public"));
-
 const playersFilePath = path.join(__dirname, '../players.json'); 
-
 const players = loadJSONData(playersFilePath);
-
 function loadJSONData(filename: string): Player[] {
     try {
         const data = fs.readFileSync(filename, 'utf8');
@@ -24,7 +19,7 @@ function loadJSONData(filename: string): Player[] {
 }
 
 app.get('/', (req, res) => {
-    res.render('index', { players }); // Geef de geladen spelers door aan de index-weergave
+    res.render('index', { players }); 
 });
 
 app.get('/detail/:id', (req, res) => {
@@ -37,7 +32,7 @@ app.get('/overview', (req, res) => {
     const sortAttribute: keyof Player = req.query.sortAttribute as keyof Player || 'name';
     const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1; 
 
-    const sortedPlayers = [...players]; // Maak een kopie van de spelersarray om te sorteren
+    const sortedPlayers = [...players]; 
 
     sortedPlayers.sort((a, b) => {
         const attrA = sortAttribute === 'club' ? a.club.name : a[sortAttribute];
@@ -54,6 +49,8 @@ app.get('/overview', (req, res) => {
     res.render('overview', { players: sortedPlayers });
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+
+
+    app.listen(3000, () => {
+        console.log('Server is running on port 3000');
+    });

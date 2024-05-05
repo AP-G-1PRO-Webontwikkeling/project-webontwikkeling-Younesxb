@@ -5,10 +5,11 @@
 <div class="controls">
     <form class="sort-form" action="/overview" method="get">
         <label for="sortAttribute">Sort by:</label>
-        <select name="sortAttribute" id="sortAttribute">
+        <select name="filterAttribute" id="filterAttribute" onchange="filterPlayers(this.value)">
             <option value="name">Name</option>
             <option value="age">Age</option>
-            <option value="position">Position</option>
+            <option value="nationality">Nationality</option>
+            <option value="overallRating">Overall Rating</option>
         </select>
         <label for="sortOrder">Order:</label>
         <select name="sortOrder" id="sortOrder">
