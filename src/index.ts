@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static("public"));
 
-const playersFilePath = path.join(__dirname, '../players.json'); // Update het pad naar players.json
+const playersFilePath = path.join(__dirname, '../players.json'); 
 
 const players = loadJSONData(playersFilePath);
 

@@ -1,8 +1,9 @@
 <%- include("header") %>
 
-    <h1>Player Overview</h1>
+<h1>Player Overview</h1>
 
-    <form action="/overview" method="get">
+<div class="controls">
+    <form class="sort-form" action="/overview" method="get">
         <label for="sortAttribute">Sort by:</label>
         <select name="sortAttribute" id="sortAttribute">
             <option value="name">Name</option>
@@ -14,40 +15,42 @@
             <option value="asc">Ascending</option>
             <option value="desc">Descending</option>
         </select>
-        <button type="submit">Sort</button>
+        <button type="submit">Click here to sort</button>
     </form>
 
-    <form>
+    <form class="search-form">
         <input type="text" id="searchInput" onkeyup="filterPlayers()" placeholder="Search for players...">
     </form>
+</div>
 
-    <table id="playersTable">
-        <thead>
+<table id="playersTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Position</th>
+            <th>Nationality</th>
+            <th>Overall Rating</th>
+            <th>Active</th>
+            <th>Club</th>
+            <th>League</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% players.forEach(player => { %>
             <tr>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Position</th>
-                <th>Nationality</th>
-                <th>Overall Rating</th>
-                <th>Active</th>
-                <th>Club</th>
-                <th>League</th>
+                <td><a href="/detail/<%= player.id %>"><%= player.name %></a></td>
+                <td><%= player.age %></td>
+                <td><%= player.position %></td>
+                <td><%= player.nationality %></td>
+                <td><%= player.overallRating %></td>
+                <td><%= player.isActive %></td>
+                <td><%= player.club.name %></td>
+                <td><%= player.club.league %></td>
+    
             </tr>
-        </thead>
-        <tbody>
-            <% players.forEach(player => { %>
-                <tr>
-                    <td><a href="/detail/<%= player.id %>"><%= player.name %></a></td>
-                    <td><%= player.age %></td>
-                    <td><%= player.position %></td>
-                    <td><%= player.nationality %></td>
-                    <td><%= player.overallRating %></td>
-                    <td><%= player.isActive %></td>
-                    <td><%= player.club.name %></td>
-                    <td><%= player.club.league %></td>
-        
-                </tr>
-            <% }); %>
-        </tbody>
-    </table>
-    <%- include("footer") %>
+        <% }); %>
+    </tbody>
+</table>
+
+<%- include("footer") %>

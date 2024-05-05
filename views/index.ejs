@@ -3,7 +3,7 @@
 <ul class="player-list">
     <% players.forEach(player => { %>
         <li class="player-item">
-            <a href="/detail/<%= player.id %>">
+            <a href="/detail/<%= player.id %>" class="player-link">
                 <div class="player-image">
                     <img src="<%= player.imageURL %>" alt="<%= player.name %>">
                 </div>
@@ -22,6 +22,7 @@
         </li>
     <% }); %>
 </ul>
+
 
 
 <%- include("footer") %>
