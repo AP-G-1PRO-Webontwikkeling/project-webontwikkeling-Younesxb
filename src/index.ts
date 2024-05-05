@@ -9,9 +9,10 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const mongoURI: string | undefined = process.env.MONGO_URI ?? '';
 const dbName = process.env.DB_NAME;
 
-const client = new MongoClient("mongodb+srv://Younes:APHogeschool@clusterofyounes.4temuqa.mongodb.net/?retryWrites=true&w=majority&appName=ClusterOfYounes");
+const client = new MongoClient(mongoURI);
 let db: Db;
 
 async function connectToMongoDB() {
