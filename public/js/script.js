@@ -16,3 +16,58 @@ function filterPlayers() {
         }       
     }
 }
+function sortPlayers() {
+    var sortAttribute = document.getElementById("sortAttribute").value;
+    var sortOrder = document.getElementById("sortOrder").value;
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("playersTable");
+    switching = true;
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("td")[0];
+            y = rows[i + 1].getElementsByTagName("td")[0];
+            // Haal de geselecteerde sorteeroptie op
+            var sortAttribute = document.getElementById("sortAttribute").value;
+            if (sortAttribute === 'age') {
+                x = parseInt(x.innerHTML);
+                y = parseInt(y.innerHTML);
+            } else if (sortAttribute === 'overallRating') {
+                x = parseInt(x.innerHTML);
+                y = parseInt(y.innerHTML);
+            } else {
+                x = x.innerHTML.toLowerCase();
+                y = y.innerHTML.toLowerCase();
+            }
+            if (x > y) {
+                shouldSwitch = true;
+                break;
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
+
+// Haal de huidige geselecteerde sorteeroptie op en sla deze op in een variabele
+var sortAttribute = document.getElementById("sortAttribute").value;
+var sortOrder = document.getElementById("sortOrder").value;
+
+// Sla de geselecteerde sorteeroptie op in lokale opslag
+localStorage.setItem('sortAttribute', sortAttribute);
+localStorage.setItem('sortOrder', sortOrder);
+
+// Herstel de geselecteerde sorteeroptie wanneer de pagina wordt geladen
+window.onload = function() {
+    var sortAttribute = localStorage.getItem('sortAttribute');
+    var sortOrder = localStorage.getItem('sortOrder');
+    if (sortAttribute && sortOrder) {
+        document.getElementById("sortAttribute").value = sortAttribute;
+        document.getElementById("sortOrder").value = sortOrder;
+    }
+};
