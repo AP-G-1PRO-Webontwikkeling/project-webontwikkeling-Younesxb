@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YNS FIFA Player Data Viewer</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/script.js" defer></script>
+</head>
+<body>
+    <h1>Welcome to the YNS FIFA Player Data Viewer!</h1>
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item"><a href="/" class="navbar-link">Home</a></li>
+            <% if (!isAuthenticated) { %>
+                <li class="navbar-item"><a href="/login" class="navbar-link">Login</a></li>
+                <li class="navbar-item"><a href="/register" class="navbar-link">Register</a></li>
+            <% } else { %>
+                <li class="navbar-item"><form action="/logout" method="post"><button type="submit" class="navbar-link">Logout</button></form></li>
+                <li class="navbar-item">Logged in as <%= username %></li>
+                <li class="navbar-item"><a href="/overview">overview</a></li>
+            <% } %>
+        </ul>
+    </nav>
+    <main>
