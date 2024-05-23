@@ -9,18 +9,24 @@
     <script src="/js/script.js" defer></script>
 </head>
 <body>
-    <h1>Welcome to the YNS FIFA Player Data Viewer!</h1>
+    <img src="/workspaces/project-webontwikkeling-Younesxb/public/images/logo.jpg" alt="">
     <nav class="navbar">
         <ul class="navbar-list">
             <li class="navbar-item"><a href="/" class="navbar-link">Home</a></li>
+            <li class="navbar-item"><a href="/overview" class="navbar-link">Overview</a></li>
+
             <% if (!isAuthenticated) { %>
-                <li class="navbar-item"><a href="/login" class="navbar-link">Login</a></li>
-                <li class="navbar-item"><a href="/register" class="navbar-link">Register</a></li>
+                <li class="navbar-item"><a href="/login" class="navbar-link-right">Login</a></li>
+                <li class="navbar-item"><a href="/register" class="navbar-link-right">Register</a></li>
             <% } else { %>
+                <li class="navbar-item"><a href="/register" class="navbar-link">Logged in as <%= username %></a></li>
                 <li class="navbar-item"><form action="/logout" method="post"><button type="submit" class="navbar-link">Logout</button></form></li>
-                <li class="navbar-item">Logged in as <%= username %></li>
-                <li class="navbar-item"><a href="/overview">overview</a></li>
+                
+
+            
             <% } %>
         </ul>
+
+        
     </nav>
     <main>

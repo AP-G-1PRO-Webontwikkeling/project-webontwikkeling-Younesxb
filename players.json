@@ -5,12 +5,14 @@
     "age": 34,
     "position": "Forward",
     "nationality": "Argentina",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/argentina.png",
     "overallRating": 93,
     "isActive": true,
     "birthDate": "1987-06-24",
     "club": {
-      "name": "Paris Saint-Germain",
-      "league": "Ligue 1"
+      "name": "Inter Miami",
+      "league": "MLS",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/interMiami.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/messi.jpg"
   },
@@ -20,12 +22,14 @@
     "age": 36,
     "position": "Forward",
     "nationality": "Portugal",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/portugal.png",
     "overallRating": 94,
     "isActive": true,
     "birthDate": "1985-02-05",
     "club": {
-      "name": "Manchester United",
-      "league": "Premier League"
+      "name": "Al Nassr",
+      "league": "Saudi League",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/alnassr.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/ronaldo.jpg"
   },
@@ -35,12 +39,14 @@
     "age": 30,
     "position": "Forward",
     "nationality": "Brazil",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/brazil.png",
     "overallRating": 91,
     "isActive": true,
     "birthDate": "1992-02-05",
     "club": {
-      "name": "Paris Saint-Germain",  
-      "league": "Ligue 1"
+      "name": "Al Hilal",
+      "league": "Saudi League",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/alhilal.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/neymar.jpg"
   },
@@ -50,12 +56,14 @@
     "age": 30,
     "position": "Midfielder",
     "nationality": "Belgium",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/belgie.png",
     "overallRating": 91,
     "isActive": true,
     "birthDate": "1991-06-28",
     "club": {
       "name": "Manchester City",
-      "league": "Premier League"
+      "league": "Premier League",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/mancity.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/kevin.jpg"
   },
@@ -65,12 +73,14 @@
     "age": 33,
     "position": "Forward",
     "nationality": "Poland",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/poland.png",
     "overallRating": 92,
     "isActive": true,
     "birthDate": "1988-08-21",
     "club": {
-      "name": "Bayern Munich",
-      "league": "Bundesliga"
+      "name": "FC Barcelona",
+      "league": "La Liga",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/fcb.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/lewandowski.jpg"
   },
@@ -80,12 +90,14 @@
     "age": 23,
     "position": "Forward",
     "nationality": "France",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/france.png",
     "overallRating": 90,
     "isActive": true,
     "birthDate": "1998-12-20",
     "club": {
       "name": "Paris Saint-Germain",
-      "league": "Ligue 1"
+      "league": "Ligue 1",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/psg.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/mbappe.webp"
   },
@@ -95,12 +107,14 @@
     "age": 30,
     "position": "Defender",
     "nationality": "Netherlands",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/nederland.png",
     "overallRating": 90,
     "isActive": true,
     "birthDate": "1991-07-08",
     "club": {
       "name": "Liverpool",
-      "league": "Premier League"
+      "league": "Premier League",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/liverpool.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/van dijk.jpeg"
   },
@@ -110,12 +124,14 @@
     "age": 36,
     "position": "Defender",
     "nationality": "Spain",
+    "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/spanje.png",
     "overallRating": 89,
     "isActive": true,
     "birthDate": "1986-03-30",
     "club": {
-      "name": "Paris Saint-Germain",
-      "league": "Ligue 1"
+      "name": "Sevilla",
+      "league": "Ligue 1",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/sevilla.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/ramos.jpg"
   },
@@ -125,12 +141,14 @@
     "age": 29,
     "position": "Forward",
     "nationality": "Egypt",
+    "nationalityIconURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/egypt.png",
     "overallRating": 90,
     "isActive": true,
     "birthDate": "1992-06-15",
     "club": {
       "name": "Liverpool",
-      "league": "Premier League"
+      "league": "Premier League",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/liverpool.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/salah.webp"
   },
@@ -140,12 +158,14 @@
     "age": 23,
     "position": "Goalkeeper",
     "nationality": "Italy",
+    "nationalityIconURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/italie.png",
     "overallRating": 89,
     "isActive": true,
     "birthDate": "1999-02-25",
     "club": {
       "name": "Paris Saint-Germain",
-      "league": "Ligue 1"
+      "league": "Ligue 1",
+      "logoURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/psg.png"
     },
     "imageURL": "https://raw.github.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/donarumma.jpg"
   }

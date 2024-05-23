@@ -23,6 +23,7 @@ let db: Db;
 let usersCollection: Collection;
 let playersCollection: Collection;
 
+
 // User type definitie
 interface User {
   _id: ObjectId;
@@ -35,14 +36,13 @@ interface User {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(session({
-  secret: 'yourSecretKey',
+  secret: 'geheim',
   resave: false,
   saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Passport lokale strategie configuratie
 passport.use(new LocalStrategy(
   async (username, password, done) => {
     try {
@@ -61,7 +61,6 @@ passport.use(new LocalStrategy(
   }
 ));
 
-// Passport serialisatie en deserialisatie van gebruiker
 passport.serializeUser((user, done) => {
   done(null, (user as User)._id);
 });
@@ -74,8 +73,7 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-
-// MongoDB verbinding en import van spelersgegevens
+    
 async function connectToMongoDB() {
   try {
     await client.connect();
@@ -157,14 +155,25 @@ app.get('/', (req, res) => {
 });
 
 // Route voor detailpagina van speler
+// Route voor detailpagina van speler 
+// Route voor detailpagina van speler
 app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
   const playerId = req.params.id;
-  const player = await playersCollection.findOne({ _id: new ObjectId(playerId) });
-  if (!player) {
-    return res.status(404).send('Speler niet gevonden');
+  const player = players.find(p => p.id === playerId);
+
+  // Controleer of de gebruiker een admin is
+  const isAdmin = req.user && (req.user as User).role === 'ADMIN';
+
+  if (player) {
+    res.render('detail', { player, isAdmin }); // Voeg isAdmin toe aan de render context
+  } else {
+    res.status(404).send('Invalid Player ID');
   }
-  res.render('detail', { player });
 });
+
+
+
+
 
 // Route voor overzichtspagina van spelers
 app.get('/overview', ensureLoggedIn, async (req, res) => {
@@ -194,7 +203,7 @@ app.get('/login', (req, res) => {
 
 // Route voor inloggen
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/overview',
   failureRedirect: '/login',
   failureFlash: false
 }));
@@ -225,6 +234,7 @@ app.post('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
+
 
 // Server luistert naar opgegeven poort
 app.listen(PORT, () => {

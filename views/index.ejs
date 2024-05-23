@@ -4,25 +4,13 @@
     <% players.forEach(player => { %>
         <li class="player-item">
             <a href="/detail/<%= player.id %>" class="player-link">
-                <div class="player-image">
-                    <img src="<%= player.imageURL %>" alt="<%= player.name %>">
-                </div>
                 <div class="player-info">
-                    <div><span class="label">Name:</span> <%= player.name %></div>
-                    <div><span class="label">Birthdate:</span> <%= player.birthDate %></div>
-                    <div><span class="label">Position:</span> <%= player.position %></div>
-                    <div><span class="label">Age:</span> <%= player.age %></div>
-                    <div><span class="label">Nationality:</span> <%= player.nationality %></div>
-                    <div><span class="label">Rating:</span> <%= player.overallRating %></div>
-                    <div><span class="label">Club:</span> <%= player.club.name %></div>
-                    <div><span class="label">League:</span> <%= player.club.league %></div>
-                    <div><span class="label">Active:</span> <%= player.isActive ? 'Yes' : 'No' %></div>
-                </div>
+                    <div>
+                        <img src="<%= player.nationalityIconURL %>" alt="<%= player.nationality %> flag" class="icon">
+                    </div>
             </a>
         </li>
     <% }); %>
 </ul>
 
 
-
-<%- include('partials/footer') %>
