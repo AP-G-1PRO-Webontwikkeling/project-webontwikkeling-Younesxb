@@ -159,10 +159,6 @@ function ensureAdmin(req: Request, res: Response, next: NextFunction) {
 
 
 
-
-
-
-
 app.get('/', (req, res) => {
     res.render('index', { players }); 
 });
@@ -255,7 +251,7 @@ app.get('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
     }
   } catch (error) {
     console.error('Error finding player:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error!');
   }
 });
 
@@ -263,7 +259,7 @@ app.get('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
 
 app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   const playerId = req.params.id;
-  const updatedPlayer: Partial<Player> = { // Gebruik Partial<Player> om aan te geven dat niet alle velden worden bijgewerkt
+  const updatedPlayer: Partial<Player> = { 
     name: req.body.name,
     age: parseInt(req.body.age),
     position: req.body.position,
@@ -279,7 +275,7 @@ app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   };
 
   try {
-    // Gebruik de updateOne-methode om de speler bij te werken zonder het _id-veld expliciet op te nemen
+  
     await playersCollection.updateOne({ _id: new ObjectId(playerId) }, { $set: updatedPlayer });
     res.redirect('/overview');
   } catch (error) {
