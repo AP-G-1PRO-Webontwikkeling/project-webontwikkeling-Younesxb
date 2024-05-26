@@ -1,8 +1,6 @@
 <%- include('partials/header') %>
 
 <section class="player-overview">
-
-
     <div class="controls">
         <form class="sort-form" action="/overview" method="get" id="sortForm">
             <label for="sortAttribute">Sort by:</label>
@@ -45,13 +43,15 @@
                     <td><a href="/detail/<%= player.id %>"><%= player.name %></a></td>
                     <td><%= player.age %></td>
                     <td><%= player.position %></td>
-                    <td><%= player.nationality %></td>
+                    <td><img src="<%= player.nationalityIconURL %>" alt="<%= player.nationality %> flag" class="icon"></td>
                     <td><%= player.overallRating %></td>
                     <td><%= player.isActive %></td>
-                    <td><%= player.club.name %></td>
+                    <td><img src="<%= player.club.logoURL %>" alt="<%= player.logo %>" class="icon"></td>
                     <td><%= player.club.league %></td>
                 </tr>
             <% }); %>
         </tbody>
     </table>
 </section>
+
+<%- include('partials/footer') %>

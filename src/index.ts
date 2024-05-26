@@ -8,6 +8,7 @@ import session from 'express-session';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Player } from '../Interfaces/Interface';
+import flash from 'connect-flash';
 
 dotenv.config();
 
@@ -40,8 +41,15 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
+app.use(flash()); // Use connect-flash
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.error = req.flash('error');
+  next();
+});
 
 passport.use(new LocalStrategy(
   async (username, password, done) => {
@@ -85,6 +93,8 @@ async function connectToMongoDB() {
     console.error('Error connecting to MongoDB:', error);
   }
 }
+
+
 
 async function importPlayersDataToMongoDB() {
   try {
@@ -157,15 +167,25 @@ app.get('/', (req, res) => {
 // Route voor detailpagina van speler
 // Route voor detailpagina van speler 
 // Route voor detailpagina van speler
+// Route for detailpagina van speler
 app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
   const playerId = req.params.id;
-  const player = players.find(p => p.id === playerId);
+  const playerIndex = players.findIndex(p => p.id === playerId);
 
-  // Controleer of de gebruiker een admin is
-  const isAdmin = req.user && (req.user as User).role === 'ADMIN';
+  // Check if the player exists
+  if (playerIndex !== -1) {
+    const player = players[playerIndex];
+    const isAdmin = req.user && (req.user as User).role === 'ADMIN';
+    
+    // Determine the next player's ID
+    let nextPlayerId = null;
+    if (playerIndex === players.length - 1) { // Check if the current player is the last one
+      nextPlayerId = players[0].id; // Loop back to the first player
+    } else {
+      nextPlayerId = players[playerIndex + 1].id;
+    }
 
-  if (player) {
-    res.render('detail', { player, isAdmin }); // Voeg isAdmin toe aan de render context
+    res.render('detail', { player, isAdmin, nextPlayerId });
   } else {
     res.status(404).send('Invalid Player ID');
   }
@@ -175,7 +195,53 @@ app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
 
 
 
-// Route voor overzichtspagina van spelers
+// Route voor het verwerken van bewerkingen van spelers
+
+
+// Route voor bewerken van een speler
+app.get('/edit/:id', ensureLoggedIn, async (req, res) => {
+  const playerId = req.params.id;
+  try {
+    const player = await playersCollection.findOne({ _id: new ObjectId(playerId) });
+    if (!player) {
+      return res.status(404).send('Player not found');
+    }
+    res.render('edit', { player });
+  } catch (error) {
+    console.error('Error fetching player for editing:', error);
+    res.status(500).send('Error fetching player for editing');
+  }
+});
+
+
+app.post('/edit/:id', ensureLoggedIn, async (req, res) => {
+  const playerId = req.params.id;
+  const { name, age, position, nationality, overallRating, isActive, birthDate, clubName, clubLeague } = req.body;
+
+  try {
+    await playersCollection.updateOne({ _id: new ObjectId(playerId) }, {
+      $set: {
+        name,
+        age: parseInt(age),
+        position,
+        nationality,
+        overallRating: parseInt(overallRating),
+        isActive: isActive === 'on', // checkbox value
+        birthDate: new Date(birthDate),
+        'club.name': clubName,
+        'club.league': clubLeague
+      }
+    });
+    res.redirect('/overview');
+  } catch (error) {
+    console.error('Error updating player:', error);
+    res.status(500).send('Error updating player');
+  }
+});
+
+
+
+
 app.get('/overview', ensureLoggedIn, async (req, res) => {
   const sortAttribute: keyof Player = req.query.sortAttribute as keyof Player || 'name';
   const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
@@ -196,24 +262,30 @@ app.get('/overview', ensureLoggedIn, async (req, res) => {
   res.render('overview', { players: sortedPlayers });
 });
 
+
+
+
+
 // Route voor inlogpagina
 app.get('/login', (req, res) => {
   res.render('login');
 });
 
-// Route voor inloggen
+
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/overview',
   failureRedirect: '/login',
-  failureFlash: false
+  failureFlash: true
 }));
 
-// Route voor registratiepagina
+
+
 app.get('/register', (req, res) => {
   res.render('register');
 });
 
-// Route voor registreren
+
+
 app.post('/register', async (req, res) => {
   const { username, password } = req.body;
   const userExists = await usersCollection.findOne({ username });
@@ -225,7 +297,8 @@ app.post('/register', async (req, res) => {
   res.redirect('/login');
 });
 
-// Route voor uitloggen
+
+
 app.post('/logout', (req, res) => {
   req.logout((err) => {
     if (err) {
@@ -236,7 +309,7 @@ app.post('/logout', (req, res) => {
 });
 
 
-// Server luistert naar opgegeven poort
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

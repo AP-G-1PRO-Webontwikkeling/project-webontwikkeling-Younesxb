@@ -1,23 +1,25 @@
-<%- include('partials/header') %>
-<div class="detail-container">
-    <div class="detail-box">
-      <% if (player) { %>
-        <h2><%= player.name %></h2>
-        <p>ID: <%= player.id %></p>
-        <p>Age: <%= player.age %></p>
-        <p>Position: <%= player.position %></p>
-        <p>Nationality: <%= player.nationality %></p>
-        <p>Overall Rating: <%= player.overallRating %></p>
-        <p>Active: <%= player.isActive %></p>
-        <p>Birth Date: <%= player.birthDate %></p>
-        <p>Club: <%= player.club.name %> (League: <%= player.club.league %>)</p>
-        <img src="<%= player.imageURL %>" alt="<%= player.name %>" class="player-image">
-  
-        <% if (isAdmin) { %>
-          <a href="/edit/<%= player.id %>" class="btn">Edit</a>
+  <%- include('partials/header') %>
+  <div class="detail-container">
+      <div class="detail-box">
+        <% if (player) { %>
+          <h2><%= player.name %></h2>
+          <p>ID: <%= player.id %></p>
+          <p>Age: <%= player.age %></p>
+          <p>Position: <%= player.position %></p>
+          <p>Nationality: <%= player.nationality %></p>
+          <p>Overall Rating: <%= player.overallRating %></p>
+          <p>Active: <%= player.isActive %></p>
+          <p>Birth Date: <%= player.birthDate %></p>
+          <p>Club: <%= player.club.name %> (League: <%= player.club.league %>)</p>
+          <img src="<%= player.imageURL %>" alt="<%= player.name %>" class="player-image"><br>
+          <button class="nextbutton"><a href="/detail/<%= nextPlayerId %>">Next</a></button>
+
+    
+          <% if (isAdmin) { %>
+            <a href="/edit/<%= player.id %>" class="btn">Edit</a>
+          <% } %>
+        <% } else { %>
+          <p>Player not found</p>
         <% } %>
-      <% } else { %>
-        <p>Player not found</p>
-      <% } %>
+      </div>
     </div>
-  </div>

@@ -29,3 +29,5 @@ UserSchema.methods.comparePassword = function(password: string): Promise<boolean
 };
 
 export const User = mongoose.model<IUser>('User', UserSchema);
+
+
