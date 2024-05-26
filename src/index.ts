@@ -12,20 +12,17 @@ import flash from 'connect-flash';
 
 dotenv.config();
 
-// Express app initialisatie
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoURI: string = process.env.MONGO_URI ?? '';
 const dbName = process.env.DB_NAME ?? '';
 
-// MongoDB client en database initialisatie
 const client = new MongoClient(mongoURI);
 let db: Db;
 let usersCollection: Collection;
 let playersCollection: Collection;
 
 
-// User type definitie
 interface User {
   _id: ObjectId;
   username: string;
