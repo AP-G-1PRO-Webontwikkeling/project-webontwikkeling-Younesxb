@@ -3,16 +3,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     height: 100vh;
- 
-    
-}
-
-header {
-    grid-area: header;
-}
-
-main {
-    grid-area: main;
 }
 
 
@@ -112,11 +102,12 @@ nav {
 }
 
 .icon {
-    
-    width: 100px; /* Adjust the size as needed */
+    display: flex;
+    justify-content: center;
+    width: 100px; 
     height: 100px;
-    vertical-align: middle; /* Align the icon with the text */
-    margin-right: 5px; /* Space between the icon and the text */
+    vertical-align: middle; 
+    margin-right: 5px;
     
 }
 
@@ -209,10 +200,12 @@ span {
 
 .nextbutton {
     font-size: 1rem;
+    padding: 0.5rem;
     text-align: left;
-    border-radius: 5px; /* Hier een waarde toevoegen, bijvoorbeeld 5 pixels */
+    border: solid 5px;
+    border-radius: 5px; 
     font-weight: 999;
-    color: #0056b3;
+    background-color: #0056b3;
 }
 
 

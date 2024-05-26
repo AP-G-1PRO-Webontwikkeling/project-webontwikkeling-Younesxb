@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<div class="edit-container">
+  <div class="edit-box">
+    <h2>Edit Player</h2>
+    <form action="/edit/<%= player._id %>" method="POST">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= player.name %>" required>
+      </div>
+      <!-- Voeg hier andere velden toe voor bewerking, zoals leeftijd, positie, nationaliteit, enzovoort -->
+      <div class="form-group">
+        <button type="submit" class="btn">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<%- include('partials/footer') %>

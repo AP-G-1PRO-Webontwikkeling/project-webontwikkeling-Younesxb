@@ -122,7 +122,7 @@
     "id": "8",
     "name": "Sergio Ramos",
     "age": 36,
-    "position": "Defender",
+    "positionURL": "Defender",
     "nationality": "Spain",
     "nationalityIconURL": "https://raw.githubusercontent.com/AP-G-1PRO-Webontwikkeling/project-webontwikkeling-Younesxb/main/public/images/spanje.png",
     "overallRating": 89,
