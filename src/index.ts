@@ -160,26 +160,8 @@ function ensureAdmin(req: Request, res: Response, next: NextFunction) {
 
 
 
-// Route om een admin-account aan te maken
-app.get('/createAdmin', async (req, res) => {
-  try {
-    const adminExists = await usersCollection.findOne({ role: 'ADMIN' });
-    if (adminExists) {
-      return res.status(400).send('Admin account already exists');
-    }
 
-    const username = 'admin'; // Gebruikersnaam voor het admin-account
-    const password = 'admin123'; // Tijdelijk wachtwoord voor het admin-account
-    const hashedPassword = await bcrypt.hash(password, 10);
 
-    await usersCollection.insertOne({ username, password: hashedPassword, role: 'ADMIN' });
-
-    res.status(200).send('Admin account created successfully');
-  } catch (error) {
-    console.error('Error creating admin account:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
 
 app.get('/', (req, res) => {
     res.render('index', { players }); 
