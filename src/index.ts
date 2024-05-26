@@ -12,18 +12,10 @@ import flash from 'connect-flash';
 
 dotenv.config();
 
-console.log(`Loaded MONGO_URI: ${process.env.MONGO_URI}`);
-console.log(`Loaded DB_NAME: ${process.env.DB_NAME}`);
-console.log(`Loaded PORT: ${process.env.PORT}`);
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoURI: string = process.env.MONGO_URI ?? '';
 const dbName = process.env.DB_NAME ?? '';
-
-if (!mongoURI.startsWith('mongodb://') && !mongoURI.startsWith('mongodb+srv://')) {
-  throw new Error("Invalid MongoDB connection string. It must start with 'mongodb://' or 'mongodb+srv://'.");
-}
 
 const client = new MongoClient(mongoURI);
 let db: Db;
@@ -125,13 +117,13 @@ const playersFilePath = path.join(__dirname, '../players.json');
 const players = loadJSONData(playersFilePath);
 
 function loadJSONData(filename: string): Player[] {
-  try {
-    const data = fs.readFileSync(filename, 'utf8');
-    return JSON.parse(data) as Player[];
-  } catch (error) {
-    console.error(`Error reading JSON file: ${error}`);
-    return [];
-  }
+    try {
+        const data = fs.readFileSync(filename, 'utf8');
+        return JSON.parse(data) as Player[];
+    } catch (error) {
+        console.error(`Error reading JSON file: ${error}`);
+        return [];
+    }
 }
 
 app.use((req, res, next) => {
@@ -151,6 +143,7 @@ function ensureLoggedIn(req: Request, res: Response, next: NextFunction) {
 function ensureAdmin(req: Request, res: Response, next: NextFunction) {
   const playerId = req.params.id;
 
+  // Valideer de speler-ID
   const validObjectIdRegex = /^[0-9a-fA-F]{24}$/;
   if (!validObjectIdRegex.test(playerId)) {
     console.error("Invalid player ID:", playerId);
@@ -163,8 +156,33 @@ function ensureAdmin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+
+
+
+
+// Route om een admin-account aan te maken
+app.get('/createAdmin', async (req, res) => {
+  try {
+    const adminExists = await usersCollection.findOne({ role: 'ADMIN' });
+    if (adminExists) {
+      return res.status(400).send('Admin account already exists');
+    }
+
+    const username = 'admin'; // Gebruikersnaam voor het admin-account
+    const password = 'admin123'; // Tijdelijk wachtwoord voor het admin-account
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await usersCollection.insertOne({ username, password: hashedPassword, role: 'ADMIN' });
+
+    res.status(200).send('Admin account created successfully');
+  } catch (error) {
+    console.error('Error creating admin account:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 app.get('/', (req, res) => {
-  res.render('index', { players }); 
+    res.render('index', { players }); 
 });
 
 app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
@@ -177,7 +195,7 @@ app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
     
     let nextPlayerId = null;
     if (playerIndex === players.length - 1) {
-      nextPlayerId = players[0].id;
+      nextPlayerId = players[0].id; // Loop back to the beginning
     } else {
       nextPlayerId = players[playerIndex + 1].id;
     }
@@ -186,4 +204,109 @@ app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
   } else {
     res.status(404).send('Invalid Player ID');
   }
+});
+
+app.get('/overview', ensureLoggedIn, async (req, res) => {
+  const sortAttribute: keyof Player = req.query.sortAttribute as keyof Player || 'name';
+  const sortOrder = req.query.sortOrder === 'desc' ? -1 : 1;
+  const players = await playersCollection.find().toArray();
+
+  const sortedPlayers = players.sort((a, b) => {
+    const attrA = sortAttribute === 'club' ? a.club.name : a[sortAttribute];
+    const attrB = sortAttribute === 'club' ? b.club.name : b[sortAttribute];
+
+    if (typeof attrA !== 'undefined' && typeof attrB !== 'undefined') {
+      if (attrA < attrB) return -1 * sortOrder;
+      if (attrA > attrB) return 1 * sortOrder;
+    }
+
+    return 0;
+  });
+
+  res.render('overview', { players: sortedPlayers });
+});
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/overview',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  const userExists = await usersCollection.findOne({ username });
+  if (userExists) {
+    return res.status(409).send('Username already exists');
+  }
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await usersCollection.insertOne({ username, password: hashedPassword, role: 'USER' });
+  res.redirect('/login');
+});
+
+app.post('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return res.status(500).send('Logout failed');
+    }
+    res.redirect('/login');
+  });
+});
+
+app.get('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
+  const playerId = req.params.id;
+
+  try {
+    const player = await playersCollection.findOne({ _id: new ObjectId(playerId) });
+
+    if (player) {
+      res.render('edit', { player });
+    } else { 
+      res.status(404).send('Player not found');
+    }
+  } catch (error) {
+    console.error('Error finding player:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
+app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
+  const playerId = req.params.id;
+  const updatedPlayer: Partial<Player> = { // Gebruik Partial<Player> om aan te geven dat niet alle velden worden bijgewerkt
+    name: req.body.name,
+    age: parseInt(req.body.age),
+    position: req.body.position,
+    nationality: req.body.nationality,
+    overallRating: parseInt(req.body.overallRating),
+    isActive: req.body.isActive === 'on',
+    birthDate: req.body.birthDate,
+    club: {
+      name: req.body.club,
+      league: req.body.league
+    },
+    imageURL: req.body.imageURL
+  };
+
+  try {
+    // Gebruik de updateOne-methode om de speler bij te werken zonder het _id-veld expliciet op te nemen
+    await playersCollection.updateOne({ _id: new ObjectId(playerId) }, { $set: updatedPlayer });
+    res.redirect('/overview');
+  } catch (error) {
+    console.error('Error updating player:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
