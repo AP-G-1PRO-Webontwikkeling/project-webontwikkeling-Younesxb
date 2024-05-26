@@ -17,6 +17,10 @@ const PORT = process.env.PORT || 3000;
 const mongoURI: string = process.env.MONGO_URI ?? '';
 const dbName = process.env.DB_NAME ?? '';
 
+if (!mongoURI.startsWith('mongodb://') && !mongoURI.startsWith('mongodb+srv://')) {
+  throw new Error("Invalid MongoDB connection string. It must start with 'mongodb://' or 'mongodb+srv://'.");
+}
+
 const client = new MongoClient(mongoURI);
 let db: Db;
 let usersCollection: Collection;
@@ -117,13 +121,13 @@ const playersFilePath = path.join(__dirname, '../players.json');
 const players = loadJSONData(playersFilePath);
 
 function loadJSONData(filename: string): Player[] {
-    try {
-        const data = fs.readFileSync(filename, 'utf8');
-        return JSON.parse(data) as Player[];
-    } catch (error) {
-        console.error(`Error reading JSON file: ${error}`);
-        return [];
-    }
+  try {
+    const data = fs.readFileSync(filename, 'utf8');
+    return JSON.parse(data) as Player[];
+  } catch (error) {
+    console.error(`Error reading JSON file: ${error}`);
+    return [];
+  }
 }
 
 app.use((req, res, next) => {
@@ -139,18 +143,24 @@ function ensureLoggedIn(req: Request, res: Response, next: NextFunction) {
   }
   next();
 }
+
 function ensureAdmin(req: Request, res: Response, next: NextFunction) {
+  const playerId = req.params.id;
+
+  const validObjectIdRegex = /^[0-9a-fA-F]{24}$/;
+  if (!validObjectIdRegex.test(playerId)) {
+    console.error("Invalid player ID:", playerId);
+    return res.status(400).send('Invalid Player ID');
+  }
+
   if (req.user && (req.user as User).role !== 'ADMIN') {
-    return res.status(403).send('Toegang verboden');
+    return res.status(403).send('Permission Denied');
   }
   next();
 }
 
-
-
-
 app.get('/', (req, res) => {
-    res.render('index', { players }); 
+  res.render('index', { players }); 
 });
 
 app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
@@ -163,7 +173,7 @@ app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
     
     let nextPlayerId = null;
     if (playerIndex === players.length - 1) {
-      nextPlayerId = players[0].id; // Loop back to the beginning
+      nextPlayerId = players[0].id;
     } else {
       nextPlayerId = players[playerIndex + 1].id;
     }
@@ -245,11 +255,9 @@ app.get('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   }
 });
 
-
-
 app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   const playerId = req.params.id;
-  const updatedPlayer: Partial<Player> = { // Gebruik Partial<Player> om aan te geven dat niet alle velden worden bijgewerkt
+  const updatedPlayer: Partial<Player> = {
     name: req.body.name,
     age: parseInt(req.body.age),
     position: req.body.position,
@@ -265,7 +273,6 @@ app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   };
 
   try {
-    // Gebruik de updateOne-methode om de speler bij te werken zonder het _id-veld expliciet op te nemen
     await playersCollection.updateOne({ _id: new ObjectId(playerId) }, { $set: updatedPlayer });
     res.redirect('/overview');
   } catch (error) {
@@ -274,7 +281,6 @@ app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   }
 });
 
-
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
