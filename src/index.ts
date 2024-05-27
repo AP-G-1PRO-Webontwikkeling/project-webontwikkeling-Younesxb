@@ -32,7 +32,7 @@ interface User {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(session({
-  secret: 'secret',
+  secret: 'geheim',
   resave: false,
   saveUninitialized: false
 }));
@@ -113,10 +113,23 @@ connectToMongoDB()
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '..', 'views'));
 
+const playersFilePath = path.join(__dirname, '../players.json'); 
+const players = loadJSONData(playersFilePath);
+
+function loadJSONData(filename: string): Player[] {
+    try {
+        const data = fs.readFileSync(filename, 'utf8');
+        return JSON.parse(data) as Player[];
+    } catch (error) {
+        console.error(`Error reading JSON file: ${error}`);
+        return [];
+    }
+}
+
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
   res.locals.user = req.user as User;
-  res.locals.username = (req.user as User)?.username || null;
+  res.locals.username = (req.user as User)?.username || null; 
   next();
 });
 
@@ -130,6 +143,7 @@ function ensureLoggedIn(req: Request, res: Response, next: NextFunction) {
 function ensureAdmin(req: Request, res: Response, next: NextFunction) {
   const playerId = req.params.id;
 
+  // Valideer de speler-ID
   const validObjectIdRegex = /^[0-9a-fA-F]{24}$/;
   if (!validObjectIdRegex.test(playerId)) {
     console.error("Invalid player ID:", playerId);
@@ -142,25 +156,26 @@ function ensureAdmin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-app.get('/', async (req, res) => {
-  const players = await playersCollection.find().toArray(); // Haal de spelers direct uit de database
-  res.render('index', { players });
+
+
+
+app.get('/', (req, res) => {
+    res.render('index', { players }); 
 });
 
 app.get('/detail/:id', ensureLoggedIn, async (req, res) => {
   const playerId = req.params.id;
-  const player = await playersCollection.findOne({ _id: new ObjectId(playerId) });
+  const playerIndex = players.findIndex(p => p.id === playerId);
 
-  if (player) {
+  if (playerIndex !== -1) {
+    const player = players[playerIndex];
     const isAdmin = req.user && (req.user as User).role === 'ADMIN';
-    const players = await playersCollection.find().toArray();
-    const playerIndex = players.findIndex(p => p._id.equals(player._id));
-    let nextPlayerId = null;
     
+    let nextPlayerId = null;
     if (playerIndex === players.length - 1) {
-      nextPlayerId = players[0]._id; // Loop back to the beginning
+      nextPlayerId = players[0].id; // Loop back to the beginning
     } else {
-      nextPlayerId = players[playerIndex + 1]._id;
+      nextPlayerId = players[playerIndex + 1].id;
     }
 
     res.render('detail', { player, isAdmin, nextPlayerId });
@@ -231,7 +246,7 @@ app.get('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
 
     if (player) {
       res.render('edit', { player });
-    } else {
+    } else { 
       res.status(404).send('Player not found');
     }
   } catch (error) {
@@ -239,6 +254,8 @@ app.get('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
     res.status(500).send('Internal Server Error!');
   }
 });
+
+
 
 app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   const playerId = req.params.id;
@@ -258,6 +275,7 @@ app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   };
 
   try {
+  
     await playersCollection.updateOne({ _id: new ObjectId(playerId) }, { $set: updatedPlayer });
     res.redirect('/overview');
   } catch (error) {
@@ -266,6 +284,7 @@ app.post('/edit/:id', ensureLoggedIn, ensureAdmin, async (req, res) => {
   }
 });
 
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
